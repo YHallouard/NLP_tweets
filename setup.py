@@ -4,11 +4,11 @@ with open('README.md', 'r') as fh:
     long_description = fh.read()
 
 required = ['matplotlib',
-            'numpy',
+            'numpy<1.19.0,>=1.16.0',
             'pandas',
             'notebook',
             'jupyter',
-            'tensorflow>=2.2.0',
+            'tensorflow<2.4.0,>=2.2.0',
             'nltk',
             'sklearn',
             'gensim',
