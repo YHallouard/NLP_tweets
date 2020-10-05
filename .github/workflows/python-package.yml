@@ -38,6 +38,10 @@ jobs:
       run: |
         python setup.py test
 
+    - name: Build
+      run: |
+        python setup.py sdist bdist_wheel
+
     - name: Coverage Badge
       run: |
         pip install coverage coverage-badge
@@ -47,7 +51,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: package_publishing
-        path: '/home/runner/work/NLP_tweets/NLP_tweets/dist/**'
+        path: '/home/runner/work/NLP_tweets/NLP_tweets/dist/**.whl'
 
     - name: Upload code coverage
       uses: actions/upload-artifact@v2
