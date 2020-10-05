@@ -19,8 +19,12 @@ def get_model(vocabulary_size: int, embeding_dim: int, max_sequence_length: int,
         seq = TimeDistributed(Dense(_f))(seq)
 
     seq = Flatten()(seq)
+    seq = Dense(100)(seq)
+    seq = Activation('tanh')(seq)
+    seq = Dropout(dropout_rate)(seq)
+    seq = BatchNormalization()(seq)
     seq = Dense(10)(seq)
-    seq = Activation('relu')(seq)
+    seq = Activation('tanh')(seq)
     seq = Dropout(dropout_rate)(seq)
     seq = BatchNormalization()(seq)
     seq = Dense(1)(seq)
