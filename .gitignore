@@ -96,3 +96,6 @@ data/external/*
 
 # Venv
 venv/*
+
+# Coverage
+junit/*
