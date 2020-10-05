@@ -22,7 +22,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     setup_requires=['pytest-runner', 'wheel', 'flake8'],
-    tests_require=['pytest', 'pytest-cov', 'treon'],
+    tests_require=['pytest', 'pytest-cov', 'treon', 'coverage', 'coverage-badge'],
     install_requires=required,
     license='MIT\
     ',

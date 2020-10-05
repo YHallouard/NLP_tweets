@@ -38,17 +38,6 @@ jobs:
       run: |
         python setup.py test
         pytest
-
-    # Publish test results
-    - name: PublishTestResults@2
-      condition: succeededOrFailed()
-      inputs:
-        testResultsFiles: '**/test-*.xml'
-        testRunTitle: 'Publish test results for Python $(python.version)'
-
-    # Publish coverage results
-    - name: PublishCodeCoverageResults@1
-      inputs:
-        codeCoverageTool: Cobertura
-        summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/coverage.xml'
-        reportDirectory: '$(System.DefaultWorkingDirectory)/**/htmlcov'
+        coverage report -m
+        coverage-badge
+      coverage: '/TOTAL.+ ([0-9]{1,3}%)/'
