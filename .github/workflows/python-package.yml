@@ -38,6 +38,3 @@ jobs:
       run: |
         python setup.py test
         pytest
-        coverage report -m
-        coverage-badge
-      coverage: '/TOTAL.+ ([0-9]{1,3}%)/'
