@@ -41,7 +41,7 @@ jobs:
     - name: Coverage Badge
       run: |
         pip install coverage coverage-badge
-        coverage-badge > '/home/runner/work/NLP_tweets/NLP_tweets/htmlcov/coverage.html
+        coverage-badge > /home/runner/work/NLP_tweets/NLP_tweets/htmlcov/coverage.html
 
     - name: Upload dist
       uses: actions/upload-artifact@v2
