@@ -1,6 +1,5 @@
 NLP_tweets
 ==============================
-[![Build Status](https://travis-ci.org/YHallouard/NLP_tweets.png?branch=master)](https://travis-ci.org/YHallouard/NLP_tweets)
 NLP model for tweets classification
 
 ## Getting Started

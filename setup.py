@@ -7,7 +7,12 @@ required = ['matplotlib',
             'numpy',
             'pandas',
             'notebook',
-            'jupyter'
+            'jupyter',
+            'tensorflow>2.2.0',
+            'nltk',
+            'sklearn',
+            'gensim',
+            'seaborn'
             ]
 
 __version__ = 'init'
