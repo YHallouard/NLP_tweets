@@ -37,13 +37,19 @@ jobs:
     - name: Test with pytest
       run: |
         python setup.py test
+
+    - name: Coverage Badge
+      run: |
+        pip install coverage coverag-badge
+        coverage-badge > /home/runner/work/NLP_tweets/NLP_tweets/coverage.svg
+
     - name: Upload dist
       uses: actions/upload-artifact@v2
       with:
         name: package_publishing
-        path: '/home/runner/work/NLP_tweets/NLP_tweets/htmlcov/index.html'
+        path: '/home/runner/work/NLP_tweets/NLP_tweets/dist/**'
     - name: Upload code coverage
       uses: actions/upload-artifact@v2
       with:
         name: code-coverage-report
-        path: '/home/runner/work/NLP_tweets/NLP_tweets/dist/**'
+        path: '/home/runner/work/NLP_tweets/NLP_tweets/coverage.svg' # '/home/runner/work/NLP_tweets/NLP_tweets/htmlcov/index.html'
