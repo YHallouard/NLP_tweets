@@ -7,10 +7,12 @@ import string
 import pandas as pd
 from nltk.corpus import stopwords
 import numpy as np
+import unidecode
+
 nltk.download('stopwords')
 
 
-def clean_text(text):
+def clean_text_old(text):
     text = text.translate(string.punctuation)
 
     text = text.lower().split()
@@ -57,8 +59,37 @@ def clean_text(text):
     return text
 
 
-def get_sequences(vocabulary_size: int, texts: pd.DataFrame, maxlen: int, tokenizer=None):
+def clean_text(to_remove_caracters: [str], stop_words: [str]) -> str:
+    def f(text: str):
+        text = text.lower()
+        text = re.sub(r"([a-z]|[0-9]|_|\.)*@([a-z]|[0-9]|_|\.)*com", "", text)
+        text = " ".join(text.split('('))
+        text = " ".join(text.split(')'))
+        text = re.sub(r"(https?://[^\s]+)", "", text)
+        text = re.sub(r"(~|c|d|x){1}(:){0,1}(([a-z]|[0-9]|_|-)*(\\|/){1})+([a-z]|[0-9]|_|-)*", "", text)
+        text = re.sub(r"(\d{2}(\.|/|-|\||:){1}\d{2}(\.|/|-|\||:){1}\d{2,4})", "", text)
+        text = unidecode.unidecode(text)
 
+        for old_char in to_remove_caracters:
+            text = " ".join(text.split(old_char))
+
+        text = "a".join(text.split('@'))
+        text = re.sub(r"(\d)+", " ", text)
+        text = re.sub(r"(((^| )win( |$))|((^| )w( |$)))", " windows ", text)
+
+        text = text.split(' ')
+        text = [word for word in text if ((word not in stop_words) and (len(word) > 1))]
+
+        stemmer = SnowballStemmer('english')
+        stemmed_words = [stemmer.stem(word) for word in text]
+        text = " ".join(stemmed_words)
+
+        return text
+
+    return f
+
+
+def get_sequences(vocabulary_size: int, texts: pd.DataFrame, maxlen: int, tokenizer=None):
     if not tokenizer:
         vocabulary_size = vocabulary_size
         tokenizer = Tokenizer(num_words=vocabulary_size)

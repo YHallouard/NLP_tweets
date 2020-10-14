@@ -12,7 +12,8 @@ required = ['matplotlib',
             'nltk',
             'sklearn',
             'gensim',
-            'seaborn'
+            'seaborn',
+            'unidecode'
             ]
 
 __version__ = 'init'
